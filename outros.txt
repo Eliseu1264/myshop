@@ -1,0 +1,1 @@
+https://github.com/PacktPublishing/Django-3-by-Example/tree/master/Chapter07/myshop/shop/static
