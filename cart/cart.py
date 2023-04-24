@@ -15,7 +15,7 @@ class Cart(object):
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
         
-    def add(self, product, quantity=1, overrid_quantity=False):
+    def add(self, product, quantity=1, override_quantity=False):
         """
         Adiciona um produto no carrinho de compras ou atualiza a sua quantidade
         """
@@ -23,7 +23,7 @@ class Cart(object):
         if product_id not in self.cart:
             self.cart[product_id] = {'quantity': 0,
                                      'price': str(product.price)}
-        if overrid_quantity:
+        if override_quantity:
             self.cart[product_id][quantity] = quantity
         else:
             self.cart[product_id][quantity] += quantity
