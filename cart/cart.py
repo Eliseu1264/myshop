@@ -26,7 +26,7 @@ class Cart(object):
         if override_quantity:
             self.cart[product_id][quantity] = quantity
         else:
-            self.cart[product_id][quantity] += quantity
+            self.cart[product_id][quantity] =+ quantity
         self.save()
         
     def save(self):
@@ -48,17 +48,17 @@ class Cart(object):
         """
         Itera pelos itens do carrinho de compra e obtem os produtos do banco de dados
         """
-        Product_ids = self.cart.keys()
+        product_ids = self.cart.keys()
         # Obem os objetos referentes aos produtos e os adiciona no carrinho
-        products = Product.objects.filter(id__in=Product_ids) 
+        products = Product.objects.filter(id__in=product_ids) 
         
         cart = self.cart.copy()
         for product in products:
             cart[str(product.id)]['product'] = product
             
-            for item in cart.values():
-                item['price'] = Decimal(item['price'])
-                item['total_price'] = item['price'] * item['quantity']
+        for item in cart.values():
+            item['price'] = Decimal(item['price'])
+            item['total_price'] = item['price'] * item['quantity']
                 
     def __len__(self):
         """
